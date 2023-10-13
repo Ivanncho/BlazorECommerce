@@ -21,5 +21,15 @@ namespace BlazorECommerce.Server.Controllers
             var products = await _context.products.ToListAsync<Product>();
             return Ok(products);
         }
+        [HttpGet("/{id}")]
+        public async Task<ActionResult<Product>> GetProductById(int id)
+        {
+            var product = await _context.products.FindAsync(id);
+            if(product == null)
+            {
+                return NotFound("Product doesn't exist.");
+            }
+            return Ok(product);
+        }
     }
 }
