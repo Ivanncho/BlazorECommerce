@@ -1,5 +1,7 @@
 ﻿@inject IProductService ProductService
 
+@page "/products"
+
 @if(ProductService.Products == null || ProductService.Products.Count == 0)
 {
     <span>Loading Products...</span>
