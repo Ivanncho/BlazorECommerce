@@ -8,28 +8,32 @@ namespace BlazorECommerce.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IProductService _productService;
 
-        public ProductController(DataContext context)
+        public ProductController(IProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var products = await _context.products.ToListAsync<Product>();
-            return Ok(products);
+            var result = await _productService.GetProductsAsync();
+            if (result == null)
+            {
+                return NotFound("There are no products.");
+            }
+            return Ok(result);
         }
         [HttpGet("/{id}")]
         public async Task<ActionResult<Product>> GetProductById(int id)
         {
-            var product = await _context.products.FindAsync(id);
-            if(product == null)
+            var result = await _productService.GetProductAsync(id);
+            if (result == null)
             {
-                return NotFound("Product doesn't exist.");
+                return NotFound("Product not found!");
             }
-            return Ok(product);
+            return Ok(result);
         }
     }
 }
