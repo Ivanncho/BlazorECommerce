@@ -17,9 +17,12 @@ builder.Services.AddSwaggerGen();
 //Dependency injection
 builder.Services.AddScoped<IProductService, ProductService>();
 
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BlazorECommerce"));
+// builder.Services.AddDbContext<DataContext>(options =>
+// {
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("BlazorECommerce"));
+// });
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<PostgreSQLContext>(options =>{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection"));
 });
 
 var app = builder.Build();
