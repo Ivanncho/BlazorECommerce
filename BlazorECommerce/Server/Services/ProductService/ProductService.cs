@@ -2,9 +2,9 @@
 {
     public class ProductService : IProductService
     {
-        private readonly DataContext _context;
+        private readonly PostgreSQLContext _context;
 
-        public ProductService(DataContext context)
+        public ProductService(PostgreSQLContext context)
         {
             _context = context;
         }
