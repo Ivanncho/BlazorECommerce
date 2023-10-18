@@ -10,6 +10,7 @@ namespace BlazorECommerce.Client.Services.ProductService
             _http = http;
         }
         public List<Product> Products { get; set; } = new List<Product>();
+        public Product product {get; set;} = new Product();
 
         public async Task<Product> CreateProduct(Product product)
         {
@@ -22,6 +23,12 @@ namespace BlazorECommerce.Client.Services.ProductService
                 throw ex;
             }
             
+        }
+
+        public async Task<ServiceResponse<Product>> GetProductById(int id)
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/product/{id}");  // Update the type parameter
+            return result;
         }
 
         public async Task GetProducts()

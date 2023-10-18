@@ -4,6 +4,7 @@
     {
         List<Product> Products { get; set; }
         Task GetProducts();
+        Task<ServiceResponse<Product>> GetProductById(int id);
         Task<Product> CreateProduct(Product product);
     }
 }
