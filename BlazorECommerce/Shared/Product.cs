@@ -20,5 +20,7 @@ namespace BlazorECommerce.Shared
         [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Price is required")]
         public decimal Price { get; set; }
+        public int CategoryId {get; set;}
+        public Category? Category {get; set;}
     }
 }
