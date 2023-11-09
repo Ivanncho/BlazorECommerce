@@ -1,4 +1,7 @@
-public interface ICategoryService
+namespace BlazorECommerce.Server.Services.CategoryService
 {
-    Task<ServiceResponse<List<Category>>> GetCategoriesAsync();
+    public interface ICategoryService
+    {
+        Task<ServiceResponse<List<Category>>> GetCategoriesAsync();
+    }
 }

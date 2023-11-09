@@ -2,6 +2,7 @@ global using BlazorECommerce.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorECommerce.Server.Data;
 global using BlazorECommerce.Server.Services.ProductService;
+global using BlazorECommerce.Server.Services.CategoryService;
 
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
