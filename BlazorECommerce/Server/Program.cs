@@ -2,6 +2,7 @@ global using BlazorECommerce.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorECommerce.Server.Data;
 global using BlazorECommerce.Server.Services.ProductService;
+
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Dependency injection
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //MSSQL connection
 // builder.Services.AddDbContext<DataContext>(options =>
