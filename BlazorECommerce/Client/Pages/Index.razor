@@ -1,12 +1,28 @@
 ﻿@page "/"
+@page "/{CategoryUrl}"
+@inject IProductService productService
 
 <PageTitle>My Shop</PageTitle>
-
 <h2>Welcome to ShopVista</h2>
 
 <div>
-    <p>ShopVista's mission is to provide a seamless shopping experience while offering a diverse and high-quality range of products.
-        We understand the importance of entertainment in our lives, and we're passionate about connecting you with the best books, 
-        magazines, video games, movies, and more. So, come and explore the world of ShopVista, where your entertainment desires become reality.
+    <p>ShopVista's mission is to provide a seamless shopping experience while offering a diverse and high-quality range
+        of products.
+        We understand the importance of entertainment in our lives, and we're passionate about connecting you with the
+        best books,
+        magazines, video games, movies, and more. So, come and explore the world of ShopVista, where your entertainment
+        desires become reality.
         Shop smart, shop with ShopVista!</p>
 </div>
+
+
+<ProductList></ProductList>
+
+@code {
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+    protected override async Task OnParametersSetAsync()
+    {
+        await productService.GetProducts(CategoryUrl);
+    }
+}
