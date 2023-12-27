@@ -18,12 +18,12 @@
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="products" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Products
+                <span class="oi oi-list" aria-hidden="true"></span> Products
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="addproduct" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Add Product
+                <span class="oi oi-plus" aria-hidden="true"></span> Add Product
             </NavLink>
         </div>
         @foreach (var category in CategoryService.Categories)
@@ -31,7 +31,7 @@
 
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="@category.Url" Match="NavLinkMatch.All">
-                    @category.Name
+                    <span class="oi oi-chevron-right" aria-hidden="true"></span> @category.Name
                 </NavLink>
             </div>
         }
