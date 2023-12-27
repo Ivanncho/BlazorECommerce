@@ -3,15 +3,16 @@
 
 @page "/products"
 
-@if(ProductService.Products == null || ProductService.Products.Count == 0)
+@if (ProductService.Products == null || ProductService.Products.Count == 0)
 {
     <span>Loading Products...</span>
 }
-else{
-    <h3>Product List</h3>
+else
+{
+    <h3>@Title</h3>
 
     <ul class="list-unstyled">
-        @foreach(var product in ProductService.Products)
+    @foreach (var product in ProductService.Products)
         {
             <li class="media my-3">
                 <div class="media-img-wrapper mr-2">
@@ -32,11 +33,14 @@ else{
     </ul>
 }
 @code {
+    [Parameter]
+    public string? Title { get; set; } = "Product List";
     protected override void OnInitialized()
     {
         ProductService.ProductsChanged += StateHasChanged;
     }
-    public void Dispose(){
+    public void Dispose()
+    {
         ProductService.ProductsChanged -= StateHasChanged;
     }
 }

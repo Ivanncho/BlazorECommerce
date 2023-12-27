@@ -1,0 +1,31 @@
+@page "/{CategoryUrl}"
+@inject IProductService ProductService
+@inject ICategoryService CategoryService
+
+@if (@CategoryUrl.Length > 0)
+{
+    <PageTitle>@CategoryUrl</PageTitle>
+
+}
+<ProductList Title="@title"></ProductList>
+
+
+@code {
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+    private string title;
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ProductService.GetProducts(CategoryUrl);
+        await CategoryService.GetCategories();
+
+        var categories = CategoryService.Categories;
+        var category = categories.FirstOrDefault<Category>(c => c.Url == CategoryUrl);
+        if (category != null)
+        {
+            title = category.Name;
+        }
+    }
+}
