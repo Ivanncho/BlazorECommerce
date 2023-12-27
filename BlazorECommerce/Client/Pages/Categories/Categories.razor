@@ -13,7 +13,7 @@
 @code {
     [Parameter]
     public string? CategoryUrl { get; set; } = null;
-    private string title;
+    private string title = "Product";
 
 
     protected override async Task OnParametersSetAsync()
