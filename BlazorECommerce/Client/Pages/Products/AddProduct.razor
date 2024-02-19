@@ -4,42 +4,51 @@
 
 <h2>Add Product</h2>
 
-@if(product == null){
+@if (product == null)
+{
     <p>Loading...</p>
-}else{
+}
+else
+{
     <EditForm Model="product" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator/>
-        <div id="title" class="form-group">
-            <label for="Title">Title</label>
-            <InputText id="Title" @bind-Value="product.Title" class="form-control custom-input"/>
-            <ValidationMessage For="@(() => product.Title)" />
-        </div>
-        <div class="form-group">
-            <label for="Description">Description</label>
-            <InputText id="Description" @bind-Value="product.Description" class="form-control custom-input"/>
-            <ValidationMessage For="@(() => product.Description)"/>
-        </div>
-        <div class="form-group">
-            <label for="ImageUrl">ImageUrl</label>
-            <InputText id="ImageUrl" @bind-Value="product.ImageUrl" class="form-control custom-input"/>
-            <ValidationMessage For="@(() => product.ImageUrl)"/>
-        </div>
-        <div class="form-group">
-            <label for="Price">Price</label>
-            <InputNumber id="Price" @bind-Value="product.Price" class="form-control custom-input"/>
-            <ValidationMessage For="@(() => product.Price)"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Product</button>
-    </EditForm>
+    <DataAnnotationsValidator />
+    <div id="title" class="form-group">
+        <label for="Title">Title</label>
+        <InputText id="Title" @bind-Value="product.Title" class="form-control custom-input" />
+        <ValidationMessage For="@(() => product.Title)" />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <InputText id="Description" @bind-Value="product.Description" class="form-control custom-input" />
+        <ValidationMessage For="@(() => product.Description)" />
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">ImageUrl</label>
+        <InputText id="ImageUrl" @bind-Value="product.ImageUrl" class="form-control custom-input" />
+        <ValidationMessage For="@(() => product.ImageUrl)" />
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <InputNumber id="Price" @bind-Value="product.Price" class="form-control custom-input" />
+        <ValidationMessage For="@(() => product.Price)" />
+    </div>
+    <div class="form-group">
+        <label for="CategoryId">Category</label>
+        <InputNumber id="CategoryId" @bind-Value="product.CategoryId" class="form-control custom-input" />
+        <ValidationMessage For="@(() => product.CategoryId)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</EditForm>
 }
 
-@code{
+@code {
     private Product product = new Product();
     public int? id = 0;
-    private async Task HandleValidSubmit(){
-        
+    private async Task HandleValidSubmit()
+    {
+
         await ProductService.CreateProduct(product);
-        
+
         NavigationManager.NavigateTo("/products");
     }
 }
